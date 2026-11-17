@@ -294,6 +294,12 @@ blockquote{margin:0;font-family:var(--display);font-style:italic;font-size:clamp
 .final h2{color:var(--cream);max-width:18ch}
 .final p{color:rgba(250,242,221,.8);max-width:52ch}
 
+/* booking (Mindbody widget) */
+#book{background:linear-gradient(180deg,transparent,rgba(91,75,136,.05))}
+.booking-card{padding:clamp(12px,3vw,28px);min-height:520px}
+.booking-card .mindbody-widget{min-height:480px}
+.small-note{font-size:var(--step--1);color:var(--ink-soft);margin:0}
+
 /* sticky booking bar on phones */
 .sticky{position:fixed;left:0;right:0;bottom:0;z-index:30;padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px));background:rgba(241,238,240,.86);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-top:1px solid var(--stone);transform:translateY(110%);transition:transform .3s}
 .sticky.on{transform:none}
@@ -492,6 +498,7 @@ a.space:hover b{color:var(--lagoon)}
       <li><a href="#about">About</a></li>
       <li><a href="#offerings">Offerings</a></li>
       <li><a href="#modalities">Modalities</a></li>
+      <li><a href="#book">Book</a></li>
       <li><a href="https://portal.milabrown.pro" title="Serene Portal: client login">Portal</a></li>
       <li><a href="#projects">Projects</a></li>
     </ul>
@@ -613,10 +620,10 @@ a.space:hover b{color:var(--lagoon)}
     </div>
     <div class="mods mods-static">
       <div class="mod"><span class="tag">01 · Individual &amp; group</span><h3>Sound Healing</h3><p>Sessions with Tibetan singing bowls and other instruments. <span class="stars" aria-label="Five stars">★★★★★</span></p><a class="mod-link" href="https://calendly.com/milabrown/sound-healing-bath-private-session" target="_blank" rel="noopener">Book now →</a></div>
-      <div class="mod"><span class="tag">02 · Insight</span><h3>Jyotish · Vedic astrology</h3><p>Personal birth charts and consultations for the chapter you are in.</p><a class="mod-link" href="#contact">Ask about a reading →</a></div>
+      <div class="mod"><span class="tag">02 · Insight</span><h3>Jyotish · Vedic astrology</h3><p>Personal birth charts and consultations for the chapter you are in.</p><a class="mod-link" href="#book">Book a reading →</a></div>
       <div class="mod"><span class="tag">03 · Movement &amp; breath</span><h3>Kundalini Yoga</h3><p>Classes in North Raleigh, NC, plus online meditations on Wednesdays.</p><a class="mod-link" href="#contact">Join a class →</a></div>
-      <div class="mod"><span class="tag">04 · Body</span><h3>Ayurveda</h3><p>Ancient wisdom for the art of living, matched to your constitution.</p><a class="mod-link" href="#contact">Learn more →</a></div>
-      <div class="mod"><span class="tag">05 · Guidance</span><h3>Coaching &amp; mentorship</h3><p>Guidance and support for your life and your business.</p><a class="mod-link" href="#contact">Start a conversation →</a></div>
+      <div class="mod"><span class="tag">04 · Body</span><h3>Ayurveda</h3><p>Ancient wisdom for the art of living, matched to your constitution.</p><a class="mod-link" href="#book">Book a consultation →</a></div>
+      <div class="mod"><span class="tag">05 · Guidance</span><h3>Coaching &amp; mentorship</h3><p>Guidance and support for your life and your business.</p><a class="mod-link" href="#book">Book a session →</a></div>
       <div class="mod mod-sg"><span class="tag">06 · Art &amp; symbol</span><h3>Sacred Geometry</h3><p>Twelve timeless patterns, from the Flower of Life to the Sri Yantra, and how to draw them.</p><a class="mod-link" href="https://milabrown.pro/sacredgeometry/">Explore the patterns →</a></div>
     </div>
   </div>
@@ -646,6 +653,22 @@ a.space:hover b{color:var(--lagoon)}
       <a class="space" href="https://www.instagram.com/serenity_moon_circle/" target="_blank" rel="noopener"><b>Serenity Moon</b><span>Women's circle · @serenity_moon_circle</span></a>
       <a class="space" href="https://www.instagram.com/serenefest.wellness/" target="_blank" rel="noopener"><b>SereneFest</b><span>Wellness festival · @serenefest.wellness</span></a>
       <a class="space" href="https://instagram.com/milabrown.pro" target="_blank" rel="noopener"><b>Mila Brown</b><span>Personal page · @milabrown.pro</span></a>
+    </div>
+  </div>
+</section>
+
+<section id="book">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Consultations · in person in North Raleigh or on Zoom</p>
+      <h2>Book a session</h2>
+      <p class="lede">Choose a consultation and a time that suits you. You'll get a confirmation and a reminder by email.</p>
+    </div>
+    <div class="card booking-card">
+      <!-- Mindbody Appointments widget begin -->
+      <div class="mindbody-widget" data-widget-type="Appointments" data-widget-id="b4745589b68"></div>
+      <!-- Mindbody Appointments widget end -->
+      <p class="small-note">Please book at least 72 hours ahead. Free cancellation up to 24 hours before your session. Questions first? <a href="#contact">Write to me</a>.</p>
     </div>
   </div>
 </section>
@@ -722,7 +745,7 @@ a.space:hover b{color:var(--lagoon)}
 </div>
 
 
-<div class="sticky" id="sticky"><a class="btn" href="#contact">Contact Mila</a></div>
+<div class="sticky" id="sticky"><a class="btn" href="#book">Book a session</a></div>
 
 <footer>
   <div class="wrap">
@@ -781,7 +804,7 @@ a.space:hover b{color:var(--lagoon)}
 
 /* Sticky booking bar on phones: hidden over the hero and the booking section */
 (function(){
-  var bar=document.getElementById("sticky"),hero=document.querySelector(".hero"),book=document.getElementById("contact");
+  var bar=document.getElementById("sticky"),hero=document.querySelector(".hero"),book=document.getElementById("book");
   if(!bar||!("IntersectionObserver" in window))return;
   var h={hero:true,book:false};function upd(){bar.classList.toggle("on",!h.hero&&!h.book);}
   new IntersectionObserver(function(e){h.hero=e[0].isIntersecting;upd();}).observe(hero);
@@ -882,5 +905,6 @@ a.space:hover b{color:var(--lagoon)}
 
 </script>
 <script src="fluid.js" defer></script>
+<script async src="https://brandedweb.mindbodyonline.com/embed/widget.js"></script>
 </body>
 </html>
