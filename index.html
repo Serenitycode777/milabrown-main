@@ -665,9 +665,7 @@ a.space:hover b{color:var(--lagoon)}
       <p class="lede">Choose a session and a time that suits you. You'll get a confirmation and a reminder by email.</p>
     </div>
     <div class="card booking-card">
-      <!-- Mindbody Appointments widget begin -->
-      <div class="mindbody-widget" data-widget-type="Appointments" data-widget-id="b4745589b68"></div>
-      <!-- Mindbody Appointments widget end -->
+      <div id="mb-book"></div>
       <p class="small-note">Please book at least 72 hours ahead. Free cancellation up to 24 hours before your session. Questions first? <a href="#contact">Write to me</a>.</p>
     </div>
   </div>
@@ -905,6 +903,7 @@ a.space:hover b{color:var(--lagoon)}
 
 </script>
 <script src="fluid.js" defer></script>
-<script async src="https://brandedweb.mindbodyonline.com/embed/widget.js"></script>
+<script src="https://portal.milabrown.pro/mb-book.js"></script>
+<script>MBBook.mount(document.getElementById("mb-book"), { demo: !/(^|\.)milabrown\.pro$/.test(location.hostname) });</script>
 </body>
 </html>
