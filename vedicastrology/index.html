@@ -39,6 +39,12 @@ a{color:inherit}
 .wheel .spin{transform-origin:200px 200px; animation:spin 240s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 .wheel-cap{text-align:center; color:var(--muted); font-size:.9rem; margin:.4rem 0 0}
+.wheel .wp{cursor:pointer; outline:none}
+.wheel .wp:hover circle,.wheel .wp:focus-visible circle{stroke:#f0d9a0; stroke-width:1.6}
+.wheel.held .spin,.wheel:hover .spin{animation-play-state:paused}
+.wtip{position:absolute; transform:translate(-50%,calc(-100% - 8px)); background:#f4e8c8; color:#170b29; font:500 .82rem/1.2 var(--sans); padding:.35rem .65rem; border-radius:8px; white-space:nowrap; pointer-events:none; opacity:0; transition:opacity .12s ease; box-shadow:0 4px 14px rgba(0,0,0,.35); z-index:5}
+.wtip::after{content:""; position:absolute; left:50%; top:100%; margin-left:-5px; border:5px solid transparent; border-top-color:#f4e8c8}
+.wtip.on{opacity:1}
 
 /* sections */
 .sec{padding:clamp(3rem,8vw,6rem) 0}
@@ -217,7 +223,7 @@ footer{padding:1.5rem 0 2.5rem; text-align:center; color:var(--muted); font-size
         <li><a href="#zodiacs" data-t="nVW"></a></li>
       </ul>
     </div>
-    <figure style="margin:0">
+    <figure style="margin:0; position:relative">
       <svg class="wheel" id="wheel" viewBox="0 0 400 400" role="img"></svg>
       <figcaption class="wheel-cap" data-t="wheelCap"></figcaption>
     </figure>
