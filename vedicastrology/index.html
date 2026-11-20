@@ -41,9 +41,16 @@ a{color:inherit}
 .wheel-cap{text-align:center; color:var(--muted); font-size:.9rem; margin:.4rem 0 0}
 .wheel .wp{cursor:pointer; outline:none}
 .wheel .wp:hover circle,.wheel .wp:focus-visible circle{stroke:#f0d9a0; stroke-width:1.6}
+.wheel .wp image{filter:drop-shadow(0 0 3px rgba(240,217,160,.35)); transition:filter .15s}
+.wheel .wp:hover image,.wheel .wp:focus-visible image{filter:drop-shadow(0 0 6px rgba(240,217,160,.9))}
+.wheel .ws{cursor:pointer; outline:none; transition:fill-opacity .15s}
+.wheel .ws:hover,.wheel .ws:focus-visible{fill-opacity:.6}
+.ellegend{display:flex; flex-wrap:wrap; justify-content:center; gap:.3rem .5rem; margin:.5rem 0 0}
+.ellegend .wl{font:inherit; font-size:.82rem; color:var(--muted); background:transparent; border:1px solid var(--rule); border-radius:999px; padding:.2rem .7rem; cursor:pointer; display:inline-flex; align-items:center; gap:.4rem}
+.ellegend .wl i{width:.7rem; height:.7rem; border-radius:50%; display:inline-block; opacity:.85}
 .wheel.held .spin,.wheel:hover .spin{animation-play-state:paused}
-.wtip{position:absolute; transform:translate(-50%,calc(-100% - 8px)); background:#f4e8c8; color:#170b29; font:500 .82rem/1.2 var(--sans); padding:.35rem .65rem; border-radius:8px; white-space:nowrap; pointer-events:none; opacity:0; transition:opacity .12s ease; box-shadow:0 4px 14px rgba(0,0,0,.35); z-index:5}
-.wtip::after{content:""; position:absolute; left:50%; top:100%; margin-left:-5px; border:5px solid transparent; border-top-color:#f4e8c8}
+.wtip{position:absolute; transform:translate(-50%,calc(-100% - 8px)); background:#f4e8c8; color:#170b29; font:500 .82rem/1.2 var(--sans); padding:.35rem .65rem; border-radius:8px; white-space:normal; width:max-content; max-width:min(300px,86vw); text-align:center; pointer-events:none; opacity:0; transition:opacity .12s ease; box-shadow:0 4px 14px rgba(0,0,0,.35); z-index:5}
+.wtip::after{content:""; position:absolute; left:calc(50% + var(--ax,0px)); top:100%; margin-left:-5px; border:5px solid transparent; border-top-color:#f4e8c8}
 .wtip.on{opacity:1}
 
 /* sections */
@@ -226,6 +233,7 @@ footer{padding:1.5rem 0 2.5rem; text-align:center; color:var(--muted); font-size
     <figure style="margin:0; position:relative">
       <svg class="wheel" id="wheel" viewBox="0 0 400 400" role="img"></svg>
       <figcaption class="wheel-cap" data-t="wheelCap"></figcaption>
+      <div class="ellegend" id="elLegend"></div>
     </figure>
   </div>
 </header>
@@ -356,6 +364,7 @@ footer{padding:1.5rem 0 2.5rem; text-align:center; color:var(--muted); font-size
 <footer><div class="wrap"><span data-t="footer"></span> · <a href="https://milabrown.pro">milabrown.pro</a></div></footer>
 
 <script src="https://cdn.jsdelivr.net/npm/astronomy-engine@2.1.19/astronomy.browser.min.js"></script>
+<script src="planets.js"></script>
 <script src="vedic.js"></script>
 </body>
 </html>
