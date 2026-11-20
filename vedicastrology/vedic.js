@@ -62,6 +62,14 @@
     { k: "Ke", sk: "Ketu", own: [], ex: [7, null], deb: [1, null], day: null, yrs: 7,
       en: "The south lunar node: detachment, intuition, past skills and spiritual release.", ru: "Южный лунный узел: отрешённость, интуиция, прошлые навыки и духовное освобождение." },
   ];
+  // element tones for the sign belt on the wheel
+  var EL_COL = { fire: "#e0734f", earth: "#7dbb5c", air: "#b9c6ec", water: "#4f8fc4" };
+  var EL_ORDER = ["fire", "earth", "air", "water"];
+  var EL_TEXT = {
+    en: { fire: "🔥 Fire: action, leadership, transformation, ambition", earth: "🌿 Earth: stability, practicality, structure, grounding", air: "🌬️ Air: communication, intellect, movement, flexibility", water: "💧 Water: emotions, intuition, sensitivity, nourishment" },
+    ru: { fire: "🔥 Огонь: действие, лидерство, трансформация, амбиции", earth: "🌿 Земля: стабильность, практичность, структура, заземлённость", air: "🌬️ Воздух: общение, интеллект, движение, гибкость", water: "💧 Вода: эмоции, интуиция, чувствительность, забота" },
+  };
+  var IMG = window.VA_PLANET_IMG || {};
   var DAYS = { en: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], ru: ["воскресенье", "понедельник", "вторник", "среда", "четверг", "пятница", "суббота"] };
   // Vimshottari order and years
   var DORDER = ["Ke", "Ve", "Su", "Mo", "Ma", "Ra", "Ju", "Sa", "Me"];
@@ -382,9 +390,15 @@
     s += '<circle cx="200" cy="200" r="190" fill="none" stroke="#dcb97a" stroke-width="1"/><circle cx="200" cy="200" r="150" fill="none" stroke="#dcb97a" stroke-width=".8"/><circle cx="200" cy="200" r="132" fill="none" stroke="rgba(220,185,122,.45)" stroke-width=".6"/>';
     var pt = function (r, lon) { var a = (180 - lon) * Math.PI / 180; return [200 + r * Math.cos(a), 200 + r * Math.sin(a)]; };
     for (var i = 0; i < 12; i++) {
+      // sign segment of the belt, tinted by its element
+      var o1 = pt(190, i * 30), o2 = pt(190, i * 30 + 30), i2 = pt(150, i * 30 + 30), i1 = pt(150, i * 30), el = SIGNS[i].el;
+      var sl = sname(i) + " · " + EL_TEXT[lang][el];
+      s += '<path class="ws" tabindex="0" role="img" aria-label="' + esc(sl) + '" data-l="' + esc(sl) + '" d="M' + o1 + "A190,190 0 0 0 " + o2 + "L" + i2 + "A150,150 0 0 1 " + i1 + 'Z" fill="' + EL_COL[el] + '" fill-opacity=".36"/>';
+    }
+    for (i = 0; i < 12; i++) {
       var a = pt(150, i * 30), b = pt(190, i * 30), c = pt(170, i * 30 + 15);
-      s += '<line x1="' + a[0] + '" y1="' + a[1] + '" x2="' + b[0] + '" y2="' + b[1] + '" stroke="#dcb97a" stroke-width=".8"/>';
-      s += '<text x="' + c[0] + '" y="' + (c[1] + 6) + '" text-anchor="middle" font-size="17" fill="#f4e8c8">' + glyph(SIGNS[i].g) + "</text>";
+      s += '<line x1="' + a[0] + '" y1="' + a[1] + '" x2="' + b[0] + '" y2="' + b[1] + '" stroke="#dcb97a" stroke-width=".8" pointer-events="none"/>';
+      s += '<text x="' + c[0] + '" y="' + (c[1] + 6) + '" text-anchor="middle" font-size="17" fill="#f4e8c8" pointer-events="none">' + glyph(SIGNS[i].g) + "</text>";
     }
     for (var n = 0; n < 27; n++) { var p1 = pt(132, n * NAKW), p2 = pt(150, n * NAKW); s += '<line x1="' + p1[0] + '" y1="' + p1[1] + '" x2="' + p2[0] + '" y2="' + p2[1] + '" stroke="rgba(220,185,122,.55)" stroke-width=".6"/>'; }
     if (A) {
@@ -395,11 +409,15 @@
         used.push({ lon: lon, r: r });
         var q = pt(r, lon), m = pt(130, lon);
         var inf = info(p.k, now), lbl = pname(p.k) + " · " + sname(inf.sign) + " " + dms(inf.deg) + (inf.retro ? " R" : "");
-        s += '<line x1="' + m[0] + '" y1="' + m[1] + '" x2="' + q[0] + '" y2="' + q[1] + '" stroke="rgba(143,196,184,.5)" stroke-width=".6"/><g class="wp" tabindex="0" role="img" aria-label="' + esc(lbl) + '" data-l="' + esc(lbl) + '"><circle cx="' + q[0] + '" cy="' + q[1] + '" r="13" fill="#170b29" stroke="#dcb97a" stroke-width=".8"/><text x="' + q[0] + '" y="' + (q[1] + 5) + '" text-anchor="middle" font-size="13" fill="#f0d9a0">' + glyph(p.g) + "</text></g>";
+        s += '<line x1="' + m[0] + '" y1="' + m[1] + '" x2="' + q[0] + '" y2="' + q[1] + '" stroke="rgba(143,196,184,.5)" stroke-width=".6"/><g class="wp" tabindex="0" role="img" aria-label="' + esc(lbl) + '" data-l="' + esc(lbl) + '">' + (IMG[p.k]
+          ? '<circle class="hit" cx="' + q[0] + '" cy="' + q[1] + '" r="14" fill="transparent"/><image href="' + IMG[p.k] + '" x="' + (q[0] - (p.k === "Sa" ? 19 : 13)) + '" y="' + (q[1] - (p.k === "Sa" ? 19 : 13)) + '" width="' + (p.k === "Sa" ? 38 : 26) + '" height="' + (p.k === "Sa" ? 38 : 26) + '"/>'
+          : '<circle class="hit" cx="' + q[0] + '" cy="' + q[1] + '" r="13" fill="#170b29" stroke="#dcb97a" stroke-width=".8"/><text x="' + q[0] + '" y="' + (q[1] + 5) + '" text-anchor="middle" font-size="13" fill="#f0d9a0">' + glyph(p.g) + "</text>") + "</g>";
       });
     }
     s += '</g><circle cx="200" cy="200" r="4" fill="#dcb97a"/>';
     w.innerHTML = s; w.setAttribute("aria-label", t("wheelCap"));
+    var lg = $("elLegend");
+    if (lg) lg.innerHTML = EL_ORDER.map(function (e) { return '<button type="button" class="wl" data-l="' + esc(EL_TEXT[lang][e]) + '"><i style="background:' + EL_COL[e] + '"></i>' + esc(t("el")[e]) + "</button>"; }).join("");
     hideTip();
   }
   // little label with the planet's name and degree when pointing at (or tapping) a planet on the wheel
@@ -409,19 +427,22 @@
     if (!tip) { tip = document.createElement("div"); tip.className = "wtip"; tip.setAttribute("role", "tooltip"); box.appendChild(tip); }
     tipOn = g; w.classList.add("held");
     tip.textContent = g.getAttribute("data-l");
-    var c = g.querySelector("circle").getBoundingClientRect(), b = box.getBoundingClientRect();
-    tip.style.left = (c.left + c.width / 2 - b.left) + "px"; tip.style.top = (c.top - b.top) + "px";
+    var c = (g.querySelector(".hit") || g).getBoundingClientRect(), b = box.getBoundingClientRect();
+    // keep the label on screen; the little arrow still points at the planet or sign
+    var cx = c.left + c.width / 2, half = tip.offsetWidth / 2, vw = document.documentElement.clientWidth;
+    var x = Math.min(Math.max(cx, half + 8), vw - half - 8);
+    tip.style.left = (x - b.left) + "px"; tip.style.top = (c.top - b.top) + "px"; tip.style.setProperty("--ax", (cx - x) + "px");
     tip.classList.add("on");
   }
   function hideTip() { if (tip) tip.classList.remove("on"); tipOn = null; var w = $("wheel"); if (w) w.classList.remove("held"); }
   (function () {
-    var w = $("wheel");
-    w.addEventListener("pointerover", function (e) { var g = e.target.closest(".wp"); if (g) showTip(g); });
-    w.addEventListener("pointerout", function (e) { var g = e.target.closest(".wp"); if (g && !g.contains(e.relatedTarget)) hideTip(); });
-    w.addEventListener("click", function (e) { var g = e.target.closest(".wp"); if (g) showTip(g); else hideTip(); });
-    w.addEventListener("focusin", function (e) { var g = e.target.closest(".wp"); if (g) showTip(g); });
-    w.addEventListener("focusout", hideTip);
-    document.addEventListener("pointerdown", function (e) { if (tipOn && !e.target.closest(".wp")) hideTip(); });
+    var box = $("wheel").parentNode, SEL = ".wp,.ws,.wl";
+    box.addEventListener("pointerover", function (e) { var g = e.target.closest(SEL); if (g) showTip(g); });
+    box.addEventListener("pointerout", function (e) { var g = e.target.closest(SEL); if (g && !g.contains(e.relatedTarget)) hideTip(); });
+    box.addEventListener("click", function (e) { var g = e.target.closest(SEL); if (g) showTip(g); else hideTip(); });
+    box.addEventListener("focusin", function (e) { var g = e.target.closest(SEL); if (g) showTip(g); });
+    box.addEventListener("focusout", hideTip);
+    document.addEventListener("pointerdown", function (e) { if (tipOn && !e.target.closest(SEL)) hideTip(); });
   })();
 
   // ---------- dasha ----------
