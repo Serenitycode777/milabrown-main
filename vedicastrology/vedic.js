@@ -394,12 +394,35 @@
         used.forEach(function (u) { if (Math.abs(norm(u.lon - lon + 180) - 180) < 8 && u.r === r) r -= 22; });
         used.push({ lon: lon, r: r });
         var q = pt(r, lon), m = pt(130, lon);
-        s += '<line x1="' + m[0] + '" y1="' + m[1] + '" x2="' + q[0] + '" y2="' + q[1] + '" stroke="rgba(143,196,184,.5)" stroke-width=".6"/><circle cx="' + q[0] + '" cy="' + q[1] + '" r="11" fill="#170b29" stroke="#dcb97a" stroke-width=".8"/><text x="' + q[0] + '" y="' + (q[1] + 5) + '" text-anchor="middle" font-size="13" fill="#f0d9a0">' + glyph(p.g) + "</text>";
+        var inf = info(p.k, now), lbl = pname(p.k) + " · " + sname(inf.sign) + " " + dms(inf.deg) + (inf.retro ? " R" : "");
+        s += '<line x1="' + m[0] + '" y1="' + m[1] + '" x2="' + q[0] + '" y2="' + q[1] + '" stroke="rgba(143,196,184,.5)" stroke-width=".6"/><g class="wp" tabindex="0" role="img" aria-label="' + esc(lbl) + '" data-l="' + esc(lbl) + '"><circle cx="' + q[0] + '" cy="' + q[1] + '" r="13" fill="#170b29" stroke="#dcb97a" stroke-width=".8"/><text x="' + q[0] + '" y="' + (q[1] + 5) + '" text-anchor="middle" font-size="13" fill="#f0d9a0">' + glyph(p.g) + "</text></g>";
       });
     }
     s += '</g><circle cx="200" cy="200" r="4" fill="#dcb97a"/>';
     w.innerHTML = s; w.setAttribute("aria-label", t("wheelCap"));
+    hideTip();
   }
+  // little label with the planet's name and degree when pointing at (or tapping) a planet on the wheel
+  var tip = null, tipOn = null;
+  function showTip(g) {
+    var w = $("wheel"), box = w.parentNode;
+    if (!tip) { tip = document.createElement("div"); tip.className = "wtip"; tip.setAttribute("role", "tooltip"); box.appendChild(tip); }
+    tipOn = g; w.classList.add("held");
+    tip.textContent = g.getAttribute("data-l");
+    var c = g.querySelector("circle").getBoundingClientRect(), b = box.getBoundingClientRect();
+    tip.style.left = (c.left + c.width / 2 - b.left) + "px"; tip.style.top = (c.top - b.top) + "px";
+    tip.classList.add("on");
+  }
+  function hideTip() { if (tip) tip.classList.remove("on"); tipOn = null; var w = $("wheel"); if (w) w.classList.remove("held"); }
+  (function () {
+    var w = $("wheel");
+    w.addEventListener("pointerover", function (e) { var g = e.target.closest(".wp"); if (g) showTip(g); });
+    w.addEventListener("pointerout", function (e) { var g = e.target.closest(".wp"); if (g && !g.contains(e.relatedTarget)) hideTip(); });
+    w.addEventListener("click", function (e) { var g = e.target.closest(".wp"); if (g) showTip(g); else hideTip(); });
+    w.addEventListener("focusin", function (e) { var g = e.target.closest(".wp"); if (g) showTip(g); });
+    w.addEventListener("focusout", hideTip);
+    document.addEventListener("pointerdown", function (e) { if (tipOn && !e.target.closest(".wp")) hideTip(); });
+  })();
 
   // ---------- dasha ----------
   var YEAR = 365.25 * 864e5, lastDasha = null, openMd = null;
