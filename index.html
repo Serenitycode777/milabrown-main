@@ -341,6 +341,22 @@ body{background:
 .mods>.mod,.tiers>.tier:not(.feature),.card{background:var(--card-grad);border-color:rgba(216,215,217,.8)}
 .space-list>.space{background:var(--card-grad);border:1px solid rgba(216,215,217,.7)}
 .tiers>.tier.feature{background:linear-gradient(160deg,#6a5a9c 0%,#5b4b88 40%,#3f3468 100%);box-shadow:0 2px 4px rgba(46,40,64,.1),0 30px 60px -20px rgba(63,52,104,.7),0 0 0 1px rgba(143,211,214,.25),inset 0 1px 0 rgba(255,255,255,.18)}
+/* Vedic astrology card: light soft blue with stars */
+.tiers>.tier.sky{border-color:#c9d8ec;position:relative;overflow:hidden;
+  background:linear-gradient(165deg,#eef4fc 0%,#dfeaf8 55%,#cfdff3 100%);
+  box-shadow:0 2px 4px rgba(60,90,140,.08),0 24px 48px -22px rgba(60,90,140,.45),inset 0 1px 0 rgba(255,255,255,.8)}
+.tier.sky li{border-color:rgba(60,90,140,.16)}
+.tier.sky .eyebrow{color:#5a7aa6}
+.tier.sky li::before{color:#b08a45}
+.tier.sky>*:not(.sky-stars):not(.orb){position:relative;z-index:1}
+.sky-stars{position:absolute;inset:-60px;z-index:0;pointer-events:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cpath d='M22 25Q22 30 27 30Q22 30 22 35Q22 30 17 30Q22 30 22 25Z' fill='%23c9a35a' fill-opacity='0.8'/%3E%3Cpath d='M150 15Q150 18 153 18Q150 18 150 21Q150 18 147 18Q150 18 150 15Z' fill='%237f9cc8' fill-opacity='0.7'/%3E%3Cpath d='M250 54Q250 60 256 60Q250 60 250 66Q250 60 244 60Q250 60 250 54Z' fill='%23c9a35a' fill-opacity='0.75'/%3E%3Cpath d='M90 92.5Q90 95 92.5 95Q90 95 90 97.5Q90 95 87.5 95Q90 95 90 92.5Z' fill='%237f9cc8' fill-opacity='0.8'/%3E%3Cpath d='M200 126Q200 130 204 130Q200 130 200 134Q200 130 196 130Q200 130 200 126Z' fill='%23ffffff' fill-opacity='1'/%3E%3Cpath d='M40 166.5Q40 170 43.5 170Q40 170 40 173.5Q40 170 36.5 170Q40 170 40 166.5Z' fill='%23c9a35a' fill-opacity='0.7'/%3E%3Cpath d='M130 197.5Q130 200 132.5 200Q130 200 130 202.5Q130 200 127.5 200Q130 200 130 197.5Z' fill='%237f9cc8' fill-opacity='0.7'/%3E%3Cpath d='M270 205.5Q270 210 274.5 210Q270 210 270 214.5Q270 210 265.5 210Q270 210 270 205.5Z' fill='%23c9a35a' fill-opacity='0.7'/%3E%3Cpath d='M80 262Q80 265 83 265Q80 265 80 268Q80 265 77 265Q80 265 80 262Z' fill='%23ffffff' fill-opacity='1'/%3E%3Cpath d='M210 277.5Q210 280 212.5 280Q210 280 210 282.5Q210 280 207.5 280Q210 280 210 277.5Z' fill='%237f9cc8' fill-opacity='0.8'/%3E%3Cpath d='M175 73.4Q175 75 176.6 75Q175 75 175 76.6Q175 75 173.4 75Q175 75 175 73.4Z' fill='%235a7aa6' fill-opacity='0.6'/%3E%3Cpath d='M60 218.4Q60 220 61.6 220Q60 220 60 221.6Q60 220 58.4 220Q60 220 60 218.4Z' fill='%235a7aa6' fill-opacity='0.6'/%3E%3Cpath d='M245 163.4Q245 165 246.6 165Q245 165 245 166.6Q245 165 243.4 165Q245 165 245 163.4Z' fill='%235a7aa6' fill-opacity='0.6'/%3E%3Cpath d='M115 148.6Q115 150 116.4 150Q115 150 115 151.4Q115 150 113.6 150Q115 150 115 148.6Z' fill='%235a7aa6' fill-opacity='0.5'/%3E%3C/svg%3E") 0 0/300px 300px repeat}
+.sky-stars.a{animation:skyDrift 38s linear infinite,twinkle 3.2s ease-in-out infinite}
+.sky-stars.b{background-size:210px 210px;background-position:120px 80px;opacity:.7;animation:skyDrift2 26s linear infinite,twinkle 2.3s ease-in-out -1.1s infinite;filter:blur(.2px)}
+@keyframes skyDrift{to{transform:translate(60px,-60px)}}
+@keyframes skyDrift2{to{transform:translate(-42px,-42px)}}
+@keyframes twinkle{0%,100%{opacity:1}50%{opacity:.35}}
+.tier .amt .join{font-size:.42em;letter-spacing:.02em;margin-left:4px;opacity:.8}
+@media (prefers-reduced-motion:reduce){.sky-stars{animation:none!important}}
 .mods>.mod[aria-pressed="true"]{box-shadow:var(--sh-2),0 0 0 1.5px var(--aqua) inset}
 .benefits{border-radius:24px;overflow:hidden;box-shadow:var(--sh-1);border-color:rgba(216,215,217,.8)}
 .benefit{background:var(--card-grad)}
@@ -473,7 +489,21 @@ footer .foot-base{margin-top:36px;padding-top:18px;border-top:1px solid rgba(250
 .tiers.tiers-5{display:flex;flex-wrap:wrap;justify-content:center}
 .tiers-5>.tier{flex:0 1 calc((100% - 40px)/3)}
 @media (max-width:1100px){.tiers-5>.tier{flex-basis:calc((100% - 20px)/2)}}
-@media (max-width:640px){.tiers-5>.tier{flex-basis:100%}}
+/* phone: the offerings become a swipe carousel */
+@media (max-width:640px){
+  .tiers.tiers-5{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scroll-padding-inline:16px;
+    max-width:none;margin-inline:-16px;padding:14px 16px 26px;gap:14px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .tiers.tiers-5::-webkit-scrollbar{display:none}
+  .tiers-5>.tier{flex:0 0 84%;scroll-snap-align:center;scroll-snap-stop:always}
+  .tiers .tier.hot{--lift:0px}
+}
+.tier-dots,.tier-hint{display:none}
+@media (max-width:640px){
+  .tier-dots{display:flex;justify-content:center;align-items:center;gap:6px;margin-top:2px}
+  .tier-dots button{width:8px;height:8px;padding:0;border:0;border-radius:999px;background:var(--stone);cursor:pointer;transition:width .25s,background .25s}
+  .tier-dots button[aria-current="true"]{width:22px;background:var(--indigo)}
+  .tier-hint{display:block;text-align:center;font-size:.8125rem;color:var(--ink-soft);margin:6px 0 0}
+}
 .tiers-4 .tier{padding:30px 24px}
 .tiers-4 .tier>h3{font-size:1.65rem}
 .tier .amt.amt-sm{font-size:2.4rem}
@@ -603,7 +633,8 @@ a.space:hover b{color:var(--lagoon)}
         </ul>
         <a class="btn ghost" href="#book">Schedule a session</a>
       </article>
-      <article class="tier">
+      <article class="tier sky">
+        <span class="sky-stars a" aria-hidden="true"></span><span class="sky-stars b" aria-hidden="true"></span>
         <span class="orb tier-orb" data-orb="saffron" aria-hidden="true"></span>
         <p class="eyebrow">Jyotish · 2 hours</p>
         <h3>Vedic Astrology · Birth Chart Reading</h3>
@@ -616,10 +647,22 @@ a.space:hover b{color:var(--lagoon)}
         <a class="btn ghost" href="?service=12#book">Book a reading</a>
       </article>
       <article class="tier">
+        <span class="orb tier-orb" data-orb="sage" aria-hidden="true"></span>
+        <p class="eyebrow">Ayurveda · Diagnostics</p>
+        <h3>VedaPulse Diagnostics</h3>
+        <p class="amt"><small>from</small>$100</p>
+        <ul>
+          <li>Pulse reading with the VedaPulse device: your dosha balance and stress levels</li>
+          <li><span>Express · 45 min · $100<br>Full · 90 min · $150</span></li>
+          <li>Personal Ayurveda recommendations for food, routine and rest</li>
+        </ul>
+        <a class="btn ghost" href="?service=13#book">Book diagnostics</a>
+      </article>
+      <article class="tier">
         <span class="orb tier-orb" data-orb="pearl" aria-hidden="true"></span>
         <p class="eyebrow">Women's circle</p>
         <h3>Serenity Moon Circle</h3>
-        <p class="amt">Free</p>
+        <p class="amt">Free <small class="join">to join</small></p>
         <ul>
           <li>A women's circle of self-discovery</li>
           <li>Sharing, practice and support</li>
@@ -640,6 +683,8 @@ a.space:hover b{color:var(--lagoon)}
         <a class="btn ghost" href="http://serenityworld.tilda.ws/serenefestregistration" target="_blank" rel="noopener">Get more info</a>
       </article>
     </div>
+    <div class="tier-dots" id="tier-dots" role="group" aria-label="Offerings"></div>
+    <p class="tier-hint">Swipe to see all offerings →</p>
   </div>
 </section>
 
@@ -832,6 +877,12 @@ a.space:hover b{color:var(--lagoon)}
 
   // Phone, email and WhatsApp number are assembled only on tap, so they never appear as text in the page
   const yr=document.getElementById("yr");if(yr)yr.textContent=new Date().getFullYear();
+  // Offerings carousel dots (phone)
+  (function(){const tr=document.querySelector(".tiers-5"),dots=document.getElementById("tier-dots");if(!tr||!dots)return;const cards=[...tr.children];
+    cards.forEach((c,i)=>{const b=document.createElement("button");b.type="button";b.setAttribute("aria-label",(c.querySelector("h3")||{}).textContent||("Offering "+(i+1)));
+      b.addEventListener("click",()=>tr.scrollTo({left:c.offsetLeft-(tr.clientWidth-c.clientWidth)/2,behavior:"smooth"}));dots.appendChild(b);});
+    const mark=()=>{const mid=tr.scrollLeft+tr.clientWidth/2;let best=0,bd=1e9;cards.forEach((c,i)=>{const d=Math.abs(c.offsetLeft+c.clientWidth/2-mid);if(d<bd){bd=d;best=i;}});[...dots.children].forEach((b,i)=>b.setAttribute("aria-current",String(i===best)));};
+    tr.addEventListener("scroll",()=>{clearTimeout(tr._t);tr._t=setTimeout(mark,60);},{passive:true});addEventListener("resize",mark);mark();})();
   const reach={tel:()=>"tel:"+["+1","984","900","6575"].join(""),mail:()=>"mailto:"+["milabrown.pro","gmail.com"].join("@")};
   document.querySelectorAll("[data-reach]").forEach(a=>a.addEventListener("click",e=>{e.preventDefault();location.href=reach[a.dataset.reach]();}));
   document.querySelectorAll("[data-wa]").forEach(a=>{a.href="https://wa.me/"+["1","984","900","6575"].join("")+"?text=Hi%20Mila";a.target="_blank";a.rel="noopener";});
@@ -903,7 +954,8 @@ a.space:hover b{color:var(--lagoon)}
     pearl:   {stops:[[250,242,221],[216,215,217],[200,186,196],[241,238,240],[171,159,167]],bands:5,turb:1.6,seed:11},
     lagoon:  {stops:[[38,79,92],[51,101,117],[87,167,172],[143,211,214],[250,242,221],[87,167,172]],bands:3,turb:3.2,seed:29},
     amethyst:{stops:[[63,52,104],[91,75,136],[140,120,190],[171,159,167],[250,242,221],[91,75,136]],bands:9,turb:1.1,seed:47},
-    saffron: {stops:[[120,84,40],[176,132,70],[220,185,122],[240,217,160],[250,242,221],[176,132,70]],bands:6,turb:2.2,seed:61}
+    saffron: {stops:[[120,84,40],[176,132,70],[220,185,122],[240,217,160],[250,242,221],[176,132,70]],bands:6,turb:2.2,seed:61},
+    sage:    {stops:[[52,84,64],[86,128,96],[143,178,140],[204,222,196],[250,242,221],[86,128,96]],bands:4,turb:2.6,seed:83}
   };
   var TW=256,TH=128;
   function rng(seed){return function(){seed=(seed*16807)%2147483647;return (seed-1)/2147483646;};}
