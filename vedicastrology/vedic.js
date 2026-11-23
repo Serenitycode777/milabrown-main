@@ -225,6 +225,9 @@
   };
   var lang = "en";
   try { lang = localStorage.getItem("va-lang") || ((navigator.language || "").toLowerCase().indexOf("ru") === 0 ? "ru" : "en"); } catch (e) {}
+  // a link can choose the language: ?lang=ru or ?lang=en (used by the articles in the Serene Portal)
+  var qlang = (location.search.match(/[?&]lang=(en|ru)\b/) || [])[1];
+  if (qlang) { lang = qlang; try { localStorage.setItem("va-lang", lang); } catch (e) {} }
   if (lang !== "ru") lang = "en";
   var t = function (k) { return T[lang][k]; };
   var fill = function (s, o) { return String(s).replace(/\{(\w+)\}/g, function (_, k) { return o[k] != null ? o[k] : ""; }); };
