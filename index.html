@@ -433,9 +433,16 @@ section,.hero{overflow-x:clip}
 @media (max-width:760px){.wa{bottom:calc(86px + env(safe-area-inset-bottom,0px))}.wa-btn{width:56px;height:56px}}
 @media (prefers-reduced-motion:reduce){.wa-dot,.wa-bubble{animation:none}}
 
-footer{background:var(--ink);color:rgba(250,242,221,.7);padding-block:40px;font-size:.875rem}
-footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;align-items:center}
+footer{background:var(--ink);color:rgba(250,242,221,.7);padding-block:clamp(44px,6vw,64px) 28px;font-size:.875rem}
+footer .foot-grid{display:grid;grid-template-columns:1.4fr repeat(3,1fr);gap:32px 24px}
 footer .mark{color:var(--cream)}
+footer .foot-brand p{margin-top:12px;max-width:32ch}
+footer h2{font:500 .6875rem var(--body);letter-spacing:.2em;text-transform:uppercase;color:var(--aqua);margin:0 0 12px}
+footer ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+footer a{color:rgba(250,242,221,.82);text-decoration:none;transition:color .2s}
+footer ul a:hover,footer ul a:focus-visible{color:var(--cream);text-decoration:underline;text-underline-offset:3px}
+footer .foot-base{margin-top:36px;padding-top:18px;border-top:1px solid rgba(250,242,221,.14);display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 16px;font-size:.8125rem;color:rgba(250,242,221,.55)}
+@media (max-width:760px){footer .foot-grid{grid-template-columns:1fr 1fr}footer .foot-brand{grid-column:1/-1}}
 
 /* ===== Gallery slider ===== */
 .gallery .sec-head{margin-bottom:clamp(28px,4vw,44px)}
@@ -538,10 +545,10 @@ a.space:hover b{color:var(--lagoon)}
 
 <div class="creds" aria-label="At a glance">
   <div class="wrap">
-    <div class="cred"><b>11+</b><span>years of practice in integrative healing</span></div>
-    <div class="cred"><b>3</b><span>communities founded: Serenity World, Serenity Moon, SereneFest</span></div>
-    <div class="cred"><b>15+</b><span>experts brought together at SereneFest</span></div>
-    <div class="cred"><b>6</b><span>core modalities: sound, Jyotish, Kundalini, Ayurveda, coaching, sacred geometry</span></div>
+    <div class="cred"><b>12</b><span>years of hands-on experience in holistic wellness</span></div>
+    <div class="cred"><b>3</b><span>main projects: Serenity World, Serenity Moon, milabrown.pro</span></div>
+    <div class="cred"><b>21+</b><span>holistic wellness modalities to tailor each session to you</span></div>
+    <div class="cred"><b>5</b><span>core modalities: Kundalini Yoga, Sound Healing, Ayurveda, Jyotish, Coaching</span></div>
   </div>
 </div>
 
@@ -551,7 +558,7 @@ a.space:hover b{color:var(--lagoon)}
     <div class="about-copy">
       <p class="eyebrow">My story</p>
       <h2>A personal journey that became a lifelong devotion</h2>
-      <p class="lede">For more than eleven years I have studied and practiced integrative healing: Kundalini Yoga, sound healing, Ayurveda, sacred geometry, Vedic astrology, art therapy and other consciousness-based practices that support emotional, physical and spiritual well-being.</p>
+      <p class="lede">For twelve years I have studied and practiced integrative healing: Kundalini Yoga, sound healing, Ayurveda, sacred geometry, Vedic astrology, art therapy and other consciousness-based practices that support emotional, physical and spiritual well-being.</p>
       <blockquote>“My work is devoted to helping people reconnect with themselves, awaken their potential, and create more conscious, balanced and meaningful lives.”</blockquote>
       <div class="skills"><span>Kundalini Yoga</span><span>Sound healing</span><span>Ayurveda</span><span>Sacred geometry</span><span>Vedic astrology</span><span>Art therapy</span></div>
     </div>
@@ -753,8 +760,44 @@ a.space:hover b{color:var(--lagoon)}
 
 <footer>
   <div class="wrap">
-    <a class="foot-logo" href="https://milabrown.pro/" aria-label="Mila Brown · milabrown.pro"><img src="mila-logo.svg" alt="Mila Brown" width="210" height="143"></a>
-    <p>Wellness &amp; business mentor · Raleigh, NC · <a href="https://retreat.milabrown.pro" style="color:var(--cream)">I AM Retreat</a></p>
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="foot-logo" href="#top" aria-label="Mila Brown · back to top"><img src="mila-logo.svg" alt="Mila Brown" width="210" height="143"></a>
+        <p>Wellness &amp; business mentor · sound healing, Kundalini Yoga, Ayurveda and Jyotish · North Raleigh, NC and online</p>
+      </div>
+      <nav aria-label="On this page">
+        <h2>Explore</h2>
+        <ul>
+          <li><a href="#about">About Mila</a></li>
+          <li><a href="#offerings">Offerings</a></li>
+          <li><a href="#modalities">Modalities</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#book">Book a session</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="More from Mila">
+        <h2>More</h2>
+        <ul>
+          <li><a href="https://retreat.milabrown.pro/">I AM Retreat</a></li>
+          <li><a href="vedicastrology/">Vedic astrology</a></li>
+          <li><a href="sacredgeometry/">Sacred geometry</a></li>
+          <li><a href="https://portal.milabrown.pro/">Serene Portal</a></li>
+        </ul>
+      </nav>
+      <div>
+        <h2>Contact</h2>
+        <ul>
+          <li><a href="#contact">Write to me</a></li>
+          <li><a href="#contact" data-wa target="_blank" rel="noopener">WhatsApp</a></li>
+          <li><a href="#contact" data-reach="mail">Email</a></li>
+          <li><a href="https://www.instagram.com/milabrown.pro/" target="_blank" rel="noopener">Instagram</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-base">
+      <span>© <span id="yr">2026</span> Mila Brown · Serenity World. All rights reserved.</span>
+      <a href="#top">Back to top ↑</a>
+    </div>
   </div>
 </footer>
 
@@ -770,6 +813,7 @@ a.space:hover b{color:var(--lagoon)}
   document.querySelectorAll("[data-copy]").forEach(b=>b.addEventListener("click",()=>copy(b.dataset.copy,b)));
 
   // Phone, email and WhatsApp number are assembled only on tap, so they never appear as text in the page
+  const yr=document.getElementById("yr");if(yr)yr.textContent=new Date().getFullYear();
   const reach={tel:()=>"tel:"+["+1","984","900","6575"].join(""),mail:()=>"mailto:"+["milabrown.pro","gmail.com"].join("@")};
   document.querySelectorAll("[data-reach]").forEach(a=>a.addEventListener("click",e=>{e.preventDefault();location.href=reach[a.dataset.reach]();}));
   document.querySelectorAll("[data-wa]").forEach(a=>{a.href="https://wa.me/"+["1","984","900","6575"].join("")+"?text=Hi%20Mila";a.target="_blank";a.rel="noopener";});
