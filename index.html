@@ -485,6 +485,39 @@ footer .foot-base{margin-top:36px;padding-top:18px;border-top:1px solid rgba(250
 .tiers.tiers-4{grid-template-columns:repeat(4,1fr)}
 @media (max-width:1100px){.tiers.tiers-4{grid-template-columns:repeat(2,1fr);max-width:none}}
 @media (max-width:640px){.tiers.tiers-4{grid-template-columns:1fr;max-width:520px;margin-inline:auto}}
+/* ===== Serene Portal & blog ===== */
+.portal-sec{color:var(--cream)}
+/* slow fluid light moving over the teal band (same base as "How it works" on the retreat page) */
+.flow{position:absolute;inset:-20%;z-index:0!important;pointer-events:none;filter:blur(60px);opacity:.9}
+.flow i{position:absolute;border-radius:50%;mix-blend-mode:screen;will-change:transform}
+.flow i:nth-child(1){width:46%;height:56%;left:4%;top:8%;background:radial-gradient(circle at 40% 40%,rgba(87,167,172,.75),rgba(87,167,172,0) 68%);animation:flowA 22s ease-in-out infinite alternate}
+.flow i:nth-child(2){width:52%;height:60%;right:2%;top:30%;background:radial-gradient(circle at 60% 50%,rgba(122,104,186,.6),rgba(122,104,186,0) 68%);animation:flowB 28s ease-in-out infinite alternate}
+.flow i:nth-child(3){width:40%;height:46%;left:34%;bottom:0;background:radial-gradient(circle at 50% 50%,rgba(143,211,214,.45),rgba(143,211,214,0) 70%);animation:flowC 18s ease-in-out infinite alternate}
+.flow i:nth-child(4){width:30%;height:36%;left:60%;top:0;background:radial-gradient(circle,rgba(217,181,106,.22),rgba(217,181,106,0) 70%);animation:flowA 34s ease-in-out -9s infinite alternate-reverse}
+@keyframes flowA{0%{transform:translate(0,0) scale(1) rotate(0)}50%{transform:translate(18%,12%) scale(1.15) rotate(25deg)}100%{transform:translate(-8%,22%) scale(.92) rotate(-15deg)}}
+@keyframes flowB{0%{transform:translate(0,0) scale(1)}50%{transform:translate(-20%,-14%) scale(1.2)}100%{transform:translate(-6%,10%) scale(.95)}}
+@keyframes flowC{0%{transform:translate(0,0) scale(.9)}50%{transform:translate(-16%,-20%) scale(1.15)}100%{transform:translate(14%,-8%) scale(1)}}
+@media (prefers-reduced-motion:reduce){.flow i{animation:none}}
+.portal-sec h2{color:var(--cream)}
+.portal-sec .eyebrow{color:var(--aqua)}
+.portal-sec .lede{color:rgba(250,242,221,.82)}
+.portal-grid{display:grid;grid-template-columns:1.35fr 1fr;gap:clamp(28px,5vw,56px);align-items:start}
+.pfeat{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.pfeat li{display:grid;grid-template-columns:40px 1fr;gap:12px;align-items:start;padding:16px;border-radius:18px;background:rgba(255,255,255,.06);border:1px solid rgba(250,242,221,.14)}
+.pfeat svg{width:40px;height:40px;padding:9px;border-radius:12px;background:rgba(87,167,172,.18);stroke:var(--aqua);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.pfeat b{display:block;font-family:var(--display);font-weight:400;font-size:1.3rem;color:var(--cream);margin-bottom:2px}
+.pfeat span{font-size:.9rem;color:rgba(250,242,221,.75);line-height:1.5}
+.portal-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.blog-teaser{background:linear-gradient(180deg,#fff,#f7f3fb);color:var(--ink);border-radius:24px;padding:clamp(24px,3vw,32px);display:grid;gap:14px;box-shadow:0 30px 60px -24px rgba(0,0,0,.55)}
+.blog-teaser .eyebrow{color:var(--lagoon)}
+.blog-teaser h3{font-size:1.75rem;line-height:1.15;color:var(--indigo)}
+.blog-teaser p{color:var(--ink-soft);font-size:.95rem}
+.blog-teaser .meta{font-size:.8rem;color:var(--mauve);letter-spacing:.04em}
+.blog-teaser .topics{display:flex;flex-wrap:wrap;gap:6px}
+.blog-teaser .topics i{font-style:normal;font-size:.75rem;padding:4px 10px;border-radius:999px;background:rgba(91,75,136,.08);color:var(--indigo)}
+.blog-teaser .lock{font-size:.8rem;color:var(--ink-soft);display:flex;gap:6px;align-items:center}
+@media (max-width:900px){.portal-grid{grid-template-columns:1fr}}
+@media (max-width:560px){.pfeat{grid-template-columns:1fr}}
 /* five offerings: three on top, two centred below */
 .tiers.tiers-5{display:flex;flex-wrap:wrap;justify-content:center}
 .tiers-5>.tier{flex:0 1 calc((100% - 40px)/3)}
@@ -747,6 +780,40 @@ a.space:hover b{color:var(--lagoon)}
   </div>
 </section>
 
+<section class="portal-sec cosmic-band" id="portal">
+  <div class="flow" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  <div class="wrap portal-grid">
+    <div>
+      <div class="sec-head" style="margin-bottom:28px">
+        <p class="eyebrow">For my clients</p>
+        <h2>Serene Portal &amp; blog</h2>
+        <p class="lede">After your first session you get your own private login to the Serene Portal: a calm space to keep everything from our work together, in English or Russian.</p>
+      </div>
+      <ul class="pfeat">
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h8l4 4v14H7z"/><path d="M15 3v4h4M10 12l2 2 4-4"/></svg><div><b>Your protocols</b><span>Your personal plan with a checklist. Tick items off as you go; I see your progress.</span></div></li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M8 3v4M16 3v4M4 10h16"/></svg><div><b>Sessions &amp; notes</b><span>Every session we have had, with my notes and recommendations.</span></div></li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4v16H5zM10 4h4v16h-4zM15.5 4.5l3.8 1-3.8 14.6-3.6-1"/></svg><div><b>Library</b><span>Mantras, guides, sound recordings and your personal documents.</span></div></li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h10l4 4v12H5z"/><path d="M15 4v4h4M8 12h8M8 15.5h8M8 9h4"/></svg><div><b>Blog</b><span>My articles on Ayurveda, yoga, sound healing and Jyotish.</span></div></li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M8 3v4M16 3v4M4 10h16M12 13v4M10 15h4"/></svg><div><b>Book a session</b><span>Choose a session and a time online, any time.</span></div></li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 20h18M6 20l6-14 6 14M9.5 13h5"/></svg><div><b>Retreats</b><span>Your retreats and new dates for the “I AM” retreat.</span></div></li>
+      </ul>
+      <div class="portal-actions">
+        <a class="btn light" href="https://portal.milabrown.pro/">Sign in to the portal</a>
+        <a class="btn ghost-light" href="?service=8#book">Not a client yet? Free discovery call</a>
+      </div>
+    </div>
+    <aside class="blog-teaser" aria-label="From the blog">
+      <p class="eyebrow">New on the blog</p>
+      <h3>Five small rituals for a calm nervous system</h3>
+      <p class="meta">by Mila Brown · 2 min read</p>
+      <p>Simple daily habits from Ayurveda and yoga that help the body feel safe again: warm water on waking, oil self-massage, steady meals, five minutes of breath and an evening wind-down.</p>
+      <div class="topics"><i>Ayurveda</i><i>Nervous system</i><i>Daily rituals</i></div>
+      <a class="btn" href="https://portal.milabrown.pro/#blog">Read on the blog</a>
+      <p class="lock"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Articles are for clients: sign in to the Serene Portal to read.</p>
+    </aside>
+  </div>
+</section>
+
 <section id="contact">
   <div class="wrap book-grid">
     <div class="card">
@@ -836,6 +903,7 @@ a.space:hover b{color:var(--lagoon)}
           <li><a href="#modalities">Modalities</a></li>
           <li><a href="#projects">Projects</a></li>
           <li><a href="#book">Book a session</a></li>
+          <li><a href="#portal">Serene Portal &amp; blog</a></li>
         </ul>
       </nav>
       <nav aria-label="More from Mila">
