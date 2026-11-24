@@ -570,6 +570,21 @@ a.space{text-decoration:none;color:inherit}
 @media (min-width:900px){.mods.mods-static{grid-template-columns:repeat(3,1fr)}}
 .space-list>a.space{align-content:start}
 a.space:hover b{color:var(--lagoon)}
+/* Gift card */
+.gift{padding-block:clamp(40px,7vw,88px)}
+.gift-in{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(28px,5vw,64px);align-items:center}
+.gift-pic{display:block;border-radius:28px;overflow:hidden;box-shadow:0 30px 60px -30px rgba(46,40,64,.55);transition:transform .4s}
+.gift-pic:hover{transform:translateY(-4px)}
+.gift-pic img{display:block;width:100%;height:auto}
+.gift-text{display:grid;gap:16px}
+.gift-text ul{margin:0;padding:0;list-style:none;display:grid;gap:8px}
+.gift-text li{padding-left:22px;position:relative;color:var(--ink-soft)}
+.gift-text li:before{content:"";position:absolute;left:2px;top:.62em;width:8px;height:8px;border-radius:50%;background:#d9b56a}
+.gift-buy{display:flex;align-items:center;gap:22px;flex-wrap:wrap;margin-top:6px}
+.gift-amt{margin:0;font-family:var(--display);font-size:3.6rem;line-height:1;font-variant-numeric:lining-nums;background:linear-gradient(170deg,#ecd08a,#d9b56a 50%,#a8803a);-webkit-background-clip:text;background-clip:text;color:transparent}
+.gift-note{margin:0;font-size:.9rem;color:var(--ink-soft)}
+.gift-note a{color:var(--indigo)}
+@media (max-width:820px){.gift-in{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -718,6 +733,29 @@ a.space:hover b{color:var(--lagoon)}
     </div>
     <div class="tier-dots" id="tier-dots" role="group" aria-label="Offerings"></div>
     <p class="tier-hint">Swipe to see all offerings →</p>
+  </div>
+</section>
+
+<section class="gift" id="gift">
+  <div class="wrap gift-in">
+    <a class="gift-pic" href="https://buy.stripe.com/dRm5kD2H47Ii1BHcpV5Ne0g" target="_blank" rel="noopener" aria-label="Buy a $100 gift card">
+      <img src="gift-card.webp" alt="Mila Brown gift card, $100: gift boxes with red and lilac ribbons" width="1000" height="666" loading="lazy">
+    </a>
+    <div class="gift-text">
+      <p class="eyebrow">Gift card</p>
+      <h2>Give the gift of calm</h2>
+      <p class="lede">A gift card for someone you love: time to rest, reconnect and feel like themselves again.</p>
+      <ul>
+        <li>Can be used towards a private session with Mila</li>
+        <li>A beautiful present for birthdays, holidays or simply to say thank you</li>
+        <li>Secure payment by card through Stripe</li>
+      </ul>
+      <div class="gift-buy">
+        <p class="gift-amt">$100</p>
+        <a class="btn" href="https://buy.stripe.com/dRm5kD2H47Ii1BHcpV5Ne0g" target="_blank" rel="noopener">Buy a gift card</a>
+      </div>
+      <p class="gift-note">Questions about a gift card? <a href="#contact">Write to me</a>.</p>
+    </div>
   </div>
 </section>
 
@@ -903,6 +941,7 @@ a.space:hover b{color:var(--lagoon)}
           <li><a href="#modalities">Modalities</a></li>
           <li><a href="#projects">Projects</a></li>
           <li><a href="#book">Book a session</a></li>
+          <li><a href="#gift">Gift card</a></li>
           <li><a href="#portal">Serene Portal &amp; blog</a></li>
         </ul>
       </nav>
